@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--Timer app first iteration
+Sebastian Terranova
+Last updated: 11/19/22-->
+
+<html>
+    <head>
+        <title>Lich Potato Timer</title>
+        <script src="function.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <h1>Timer</h1>
+    <div class="container" id="time">
+        <span class="digit" id="minuteDis">05</span>
+        <span class="txt" id="colon">:</span>
+        <span class="digit" id="secondDis">00</span>
+    </div>
+    <div class="container" id="button">
+        <button class="btn" onclick="start();" id="start">Start</button>
+        <button class="btn" onclick="pause();" id="pause">Pause</button>
+        <button class="btn" onclick="increase();" id="increase">+1 Minute</button>
+        <button class="btn" onclick="decrease();" id="decrease">-1 Minute</button>
+    </div>
+    <br>
+    <center>
+        <button class="btn" onclick="reset();" id="reset">Reset</button>
+    </center>
+    <div class="container" id="GO">
+        <span class="digit" id="gameover"></span>
+    </div>
+    </body>
+</html>
