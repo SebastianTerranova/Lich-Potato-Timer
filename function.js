@@ -12,10 +12,15 @@ function timerStart(){
         counter = 0;
     }
 
-    if (seconds == 0 && minutes <= 0){
+    if (minutes == 1 && seconds == 0){
+        warningSound();
+    }
+
+    if (seconds < 0 && minutes <= 0){
         timer = false;
         document.getElementById('gameover').innerHTML = "Game Over";
-    } else if (seconds == 0) {
+        loseSound();
+    } else if (seconds < 0) {
         minutes--;
         seconds = 59;
     }
@@ -66,6 +71,16 @@ function decrease(){
             document.getElementById('minuteDis').innerHTML = minutes;
         }
         console.log(minutes + ":" + seconds);
+    } else if (minutes <= 0){
+        timer = false;
+        counter = 0;
+        running = 0;
+        minutes = 0;
+        seconds = 0;
+        document.getElementById('minuteDis').innerHTML = "00";
+        document.getElementById('secondDis').innerHTML = "00";
+        document.getElementById('gameover').innerHTML = "Game Over";
+        loseSound();
     }
 }
 
@@ -101,6 +116,37 @@ if (running == 1){
 }
 }
 
-//Reset Button
+function loseSound(){
+    console.log("playLose() started");
+    mySound = new sound("Fall.mp3");
+    mySound.play();
+}
 
-//audio
+function warningSound(){
+    console.log("warningSound() started");
+    mySound = new sound("Warning.mp3");
+    mySound.play();
+}
+
+function sound(srcFile){
+    //defines sound as audio
+    this.sound = document.createElement("audio");
+    //uses this file as source
+    this.sound.src = srcFile;
+    //loads audio file into memory
+    this.sound.setAttribute("preload", "audio");
+    //controls won't show up when audio is played
+    this.sound.setAttribute("controls", "none");
+    //makes sure only audio plays
+    this.sound.style.display = "none";
+    //confirms changes
+    document.body.appendChild(this.sound);
+    //plays sound
+    this.play = function(){
+        this.sound.play();
+    }
+    //pauses sound
+    this.stop = function(){
+        this.sound.pause();
+    }    
+}
